@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import tw from 'tailwind-react-native-classnames';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MapView, { Marker, fitToSuppliedMarkers } from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import { selectOrigin, selectDestination } from '../slices/navSlice';
 import { GOOGLE_MAPS_APIKEY } from '@env';
-import { useRef } from 'react';
-
 import MapViewDirections from 'react-native-maps-directions';
 
 const Map = () => {
@@ -17,10 +15,10 @@ const Map = () => {
   useEffect(() => {
     if (!origin || !destination) return;
     mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], {
-      edgePadding: { top: 20, right: 20, bottom: 20, left: 20 },
+      edgePadding: { top: 60, right: 50, bottom: 50, left: 50 },
       animated: true,
     });
-  }, [origin, destination]);
+  });
   return (
     <MapView
       ref={mapRef}
